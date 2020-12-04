@@ -1,8 +1,11 @@
+//set time to wait after scroll
+var time = 250
+
+//set the height to scroll
+var height = window.innerHeight
+
 var finish_up = false;
 var finish_down = false;
-
-var time = 250
-var height = window.innerHeight
 var timer;
 
 document.addEventListener('scroll', function(e) {
@@ -26,7 +29,6 @@ document.addEventListener("wheel", function(e){
 	}
 	else if (e.deltaY > 0){
 		if(finish_up == false){
-			
 			finish_up = true;
 			scrolldown();
 		}
