@@ -1,0 +1,23 @@
+::-webkit-scrollbar {
+	display: none;
+}
+@-moz-document url-prefix() {
+	html,body{overflow: hidden !important;scrollbar-color: transparent transparent;scrollbar-width: none;
+	-ms-overflow-style: none;margin-right:-17px!important;
+	margin-bottom:-17px!important;
+	}
+}
+
+html{
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+div{
+	width: 100%;
+	height: 100vh;
+}
