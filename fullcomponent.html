@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+		::-webkit-scrollbar {
+	display: none;
+}
+@-moz-document url-prefix() {
+	html,body{scrollbar-color: transparent transparent;scrollbar-width: none;
+	margin-right:-17px!important;
+	
+	}
+}
+
+html{
+	margin: 0;
+	padding: 0;
+	
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+div{
+	width: 100%;
+	height: 100vh;
+}
+
+	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/opaScroll.js"></script>
-	<link rel="stylesheet" href="css/stylesheet.css">
+	<!--<link rel="stylesheet" href="css/stylesheet.css">-->
 	<title>Boilerplate </title>
 </head>
 <body>
-	<section id="full" style="overflow: scroll;">
-		<div>
+	<section class="keine" id="full" style="overflow: scroll;">
+		<div class="keine">
 			first
 		</div>
 
-		<div id="kp" style="background-color: aqua !important;">
+		<div class="keine" id="kp" style="background-color: aqua !important;">
 			second
 		</div>
 
-		<div id="kp2" style="background-color: black !important;">
+		<div class="keine" id="kp2" style="background-color: black !important;">
 			ninja :) 
 		</div>
 	</section>
 </body>
 <script>
 	ids = ['#full','#kp','#kp2'];
+	//height = window.innerHeight;
+	
 </script>
 </html>

@@ -4,7 +4,7 @@
 @-moz-document url-prefix() {
 	html,body{scrollbar-color: transparent transparent;scrollbar-width: none;
 	-ms-overflow-style: none;margin-right:-17px!important;
-	margin-bottom:-17px!important;
+	
 	}
 }
 
