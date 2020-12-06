@@ -10,12 +10,23 @@ var ids = [];
 //set animation duration
 animationTime = 600;
 
+//sroll to top at load
+scrollToTop = false;
+
 var finish_up = false;
 var finish_down = false;
 var timer;
 
 var actualState = 0;
 var endpage = false;
+
+window.addEventListener('load', (event) => {
+	if(scrollToTop == true){
+		$([document.documentElement, document.body]).animate({
+			scrollTop: 0
+		}, animationTime);
+	}
+  });
 
 $(window).scroll(function() {
 	if(timer !== null) {
