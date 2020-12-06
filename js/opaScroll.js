@@ -20,6 +20,29 @@ var timer;
 var actualState = 0;
 var endpage = false;
 
+var ts;
+$(document).bind('touchstart', function (e){
+   ts = e.originalEvent.touches[0].clientY;
+});
+
+$(document).bind('touchend', function (e){
+   var te = e.originalEvent.changedTouches[0].clientY;
+   if(ts > te+5){
+	  console.log("down?")
+	  endpage = false;
+	  if(finish_up == false){
+		finish_up = true;
+		scrolldown("down");
+	}	
+   }else if(ts < te-5){
+	console.log("up?")
+	if(finish_down == false){
+		finish_down = true;
+		scrolldown("up");
+	}
+   }
+});
+
 window.addEventListener('load', (event) => {
 	if(scrollToTop == true){
 		$([document.documentElement, document.body]).animate({
