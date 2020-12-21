@@ -1,5 +1,5 @@
 //set time to wait after scroll
-var time = 200;
+var time = 400;
 
 //set the height to scroll
 var height = 0;
@@ -20,28 +20,17 @@ var timer;
 var actualState = 0;
 var endpage = false;
 
+var load = true;
 var ts;
-$(document).bind('touchstart', function (e){
-   ts = e.originalEvent.touches[0].clientY;
-});
+// Safari 3.0+ "[object HTMLElementConstructor]" 
+var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
 
-$(document).bind('touchend', function (e){
-   var te = e.originalEvent.changedTouches[0].clientY;
-   if(ts > te+5){
-	  console.log("down?")
-	  endpage = false;
-	  if(finish_up == false){
-		finish_up = true;
-		scrolldown("down");
-	}	
-   }else if(ts < te-5){
-	console.log("up?")
-	if(finish_down == false){
-		finish_down = true;
-		scrolldown("up");
-	}
-   }
-});
+// Internet Explorer 6-11
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+if(isIE || isSafari){
+	load = false;
+}
 
 window.addEventListener('load', (event) => {
 	if(scrollToTop == true){
@@ -51,38 +40,59 @@ window.addEventListener('load', (event) => {
 	}
   });
 
-$(window).scroll(function() {
-	if(timer !== null) {
-        clearTimeout(timer);        
-    }
-    timer = setTimeout(function() {
-		console.log("ende")
-		 finish_up = false
-		 finish_down = false
-    }, time);
-	if($(window).scrollTop() + $(window).height() >= $(document).height()-30) {
-		endpage = true;
-	}
- });
-
-document.addEventListener("wheel", function(e){
-	e.preventDefault();
-	if (e.deltaY < 0)
-	{
-		endpage = false;
-		if(finish_down == false){
-			finish_down = true;
-			scrolldown("up");
+if(load){
+	$(document).bind('touchstart', function (e){
+		ts = e.originalEvent.touches[0].clientY;
+	 });
+	 
+	 $(document).bind('touchend', function (e){
+		var te = e.originalEvent.changedTouches[0].clientY;
+		if(ts > te+5){
+		   endpage = false;
+		   if(finish_up == false){
+			 finish_up = true;
+			 scrolldown("down");
+		 }	
+		}else if(ts < te-5){
+		 if(finish_down == false){
+			 finish_down = true;
+			 scrolldown("up");
+		 }
 		}
-	}
-	else if (e.deltaY > 0){
-		if(finish_up == false){
-			finish_up = true;
-			scrolldown("down");
+	 });
+	 $(window).scroll(function() {
+		if(timer !== null) {
+			clearTimeout(timer);        
 		}
-	}
-}, {passive: false} );
+		timer = setTimeout(function() {
+			 finish_up = false
+			 finish_down = false
+		}, time);
+		if($(window).scrollTop() + $(window).height() >= $(document).height()-30) {
+			endpage = true;
+		}
+	 });
 	
+	document.addEventListener("wheel", function(e){
+		e.preventDefault();
+		if (e.deltaY < 0)
+		{
+			endpage = false;
+			if(finish_down == false){
+				finish_down = true;
+				scrolldown("up");
+			}
+		}
+		else if (e.deltaY > 0){
+			if(finish_up == false){
+				finish_up = true;
+				scrolldown("down");
+			}
+		}
+	}, {passive: false} );
+		
+}
+
 function scrolldown(direction){
 	if(ids.length != 0){
 		if(actualState >= ids.length){

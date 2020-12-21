@@ -4,14 +4,12 @@
 @-moz-document url-prefix() {
 	html,body{scrollbar-color: transparent transparent;scrollbar-width: none;
 	margin-right:-17px!important;
-	
 	}
 }
 
 html{
 	margin: 0;
 	padding: 0;
-	
 }
 body{
 	margin: 0;
